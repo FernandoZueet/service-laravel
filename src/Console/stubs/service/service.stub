@@ -1,0 +1,34 @@
+<?php
+
+namespace App\Services;
+
+use FzService\Service;
+use {{model}}\{{name}};
+use App\Http\Resources\{{name}}Resource;
+
+class {{name}}Service extends Service
+{
+	/**
+	 * Model class
+	 *
+	 * @var \{{model}}\{{name}}
+	 */
+	protected $modelClass = {{name}}::class;
+
+	/**
+	 * Read all rows
+	 *
+	 * @param array $params
+	 * @param boolean $collection
+	 * @return array|stdClass
+	 */
+	public function readAll(array $params = [], bool $collection = true)
+	{
+		return $this->mountRead(function() use ($params) {
+
+			//
+
+		}, $params, $collection ? {{name}}Resource::class : null, []);
+	}
+
+}

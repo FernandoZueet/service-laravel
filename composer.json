@@ -1,0 +1,30 @@
+{
+    "name": "fernandozueet/service-laravel",
+    "type": "library",
+    "description": "Library that helps to separate the business rule part of the control. Leaving control leaner.",
+    "keywords": ["service", "service laravel", "laravel", "repository", "crud", "service crud", "repository crud"],
+    "license": "MIT",
+    "authors": [{
+        "name": "Fernando Zueet",
+        "email": "fernandozueet@hotmail.com",
+        "homepage": "https://github.com/FernandoZueet"
+    }],
+    "require": {
+        "php": ">=7.0.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "5.5.*",
+        "phpunit/dbunit": ">=1.2",
+        "phpunit/phpunit-selenium": ">=1.2"
+    },
+    "autoload": {
+        "psr-4": {
+            "FzService\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/"
+        }
+    }
+}
