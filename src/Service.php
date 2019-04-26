@@ -27,13 +27,25 @@ abstract class Service
 	protected $modelClass;
 
 	/**
+     * Model class for repo.
+     *
+     * @var string
+     */
+    protected $modelClassA;
+
+	/**
 	 * Create new query
 	 *
 	 * @return void
 	 */
 	protected function newQuery()
 	{
-		$this->modelClass = new $this->modelClass();
+        if(empty($this->modelClassA)) {
+            $this->modelClass = new $this->modelClass();
+            $this->modelClassA = $this->modelClass;
+        }else{
+            $this->modelClass = $this->modelClassA;
+        }
 
 		return $this->modelClass;
 	}
