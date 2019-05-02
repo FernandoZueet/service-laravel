@@ -61,7 +61,6 @@ class ServiceCommand extends Command
 	{
 		//Get inputs
 		$name = $this->argument('service');
-		$pathModel = $this->ask('Model directory', 'App\\Models');
 
 		//Paths
 		$path = app_path('Services/') . $name . 'Service.php';
@@ -70,6 +69,8 @@ class ServiceCommand extends Command
 		}
 
 		if ($this->confirm('Want to create a complete service?', true)) {
+
+			$pathModel = $this->ask('Model directory', 'App\\Models');
 
 			//mount template service
 			$template = $this->replaceTemplate([

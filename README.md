@@ -14,7 +14,7 @@ Library that helps to separate the business rule part of the control. Leaving co
 ## Installation
 
 ```bash
-$ composer require fernandozueet/service-laravel
+composer require fernandozueet/service-laravel
 ```
 
 ---
@@ -39,7 +39,7 @@ The resource class is overwritten and gets a new customization feature from the 
 You do not need to enter the resource prefix.
 
 ```bash
-$ php artisan fzservice:make:resource User
+php artisan fzservice:make:resource User
 ```
 
 Class created:
@@ -81,7 +81,7 @@ How to use the filter?
 You do not need to enter the service prefix.
 
 ```bash
-$ php artisan fzservice:make:service User
+php artisan fzservice:make:service User
 ```
 
 Class created:
@@ -275,7 +275,11 @@ public function readAll(array $params = [], bool $collection = true)
 
 Method to insertion data eloquent.
 
-<code>insert(array $values, bool $transaction = false, array $exclude = [], array $include = [])</code>
+<code>insert(array $values, array $exclude = [], array $include = [])</code>
+
+or
+
+<code>create(array $values, array $exclude = [], array $include = [])</code>
 
 Example 1:
 
@@ -285,6 +289,9 @@ Example 1:
 //Service
 $userService = \App\Services\UserService();
 $result = $userService->insert(['name' => "User test", "last_name" => 'other name']);
+
+//Insert through the Create method (declare fields to insert into the model)
+$result = $userService->create(['name' => "User test", "last_name" => 'other name']);
 
 //Code equal to:
 $model = new \App\User();
@@ -325,7 +332,7 @@ $result = $model->makeVisible(['id','name'])->toArray(); //visible return fields
 
 Method to update data eloquent.
 
-<code>updateById(int $id, array $values, bool $transaction = false, array $exclude = [], array \$include = [])</code>
+<code>updateById(int $id, array $values, array $exclude = [], array \$include = [])</code>
 
 Example:
 
@@ -347,7 +354,7 @@ $result = $model->toArray();
 
 Method to delete data eloquent.
 
-<code>deleteById(int $id, bool $transaction = false)</code>
+<code>deleteById(int $id)</code>
 
 Example:
 
@@ -366,7 +373,7 @@ $result = \App\User::where('id', 1)->forceDelete();
 
 Method to soft delete data eloquent.
 
-<code>softDeleteById(int $id, bool $transaction = false)</code>
+<code>softDeleteById(int $id)</code>
 
 Example:
 
@@ -397,6 +404,9 @@ $this->setValuesModel(['name' => 'User test']);
 
 //Save model (array $exclude = [], array $include = [], bool $returnArray = true)
 $this->saveModel();
+
+//Filter model (filtersModel(array $exclude = [], array $include = [], bool $returnArray = true))
+$this->filtersModel();
 ```
 
 ---
