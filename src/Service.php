@@ -27,11 +27,11 @@ abstract class Service
 	protected $modelClass;
 
 	/**
-     * Model class for repo.
-     *
-     * @var string
-     */
-    protected $modelClassA;
+	 * Model class for repo.
+	 *
+	 * @var string
+	 */
+	protected $modelClassA;
 
 	/**
 	 * Create new query
@@ -40,12 +40,12 @@ abstract class Service
 	 */
 	protected function newQuery()
 	{
-        if(empty($this->modelClassA)) {
-            $this->modelClass = new $this->modelClass();
-            $this->modelClassA = $this->modelClass;
-        }else{
-            $this->modelClass = $this->modelClassA;
-        }
+		if (empty($this->modelClassA)) {
+			$this->modelClass = new $this->modelClass();
+			$this->modelClassA = $this->modelClass;
+		} else {
+			$this->modelClass = $this->modelClassA;
+		}
 
 		return $this->modelClass;
 	}
@@ -78,6 +78,8 @@ abstract class Service
 	{
 		$this->modelClass->save();
 
+		$this->modelClassA = null;
+
 		return $this->filtersModel($exclude, $include, $returnArray);
 	}
 
@@ -89,7 +91,7 @@ abstract class Service
 	 * @param boolean $returnArray
 	 * @return void
 	 */
-	protected function filtersModel(array $exclude = [], array $include = [], bool $returnArray = true) 
+	protected function filtersModel(array $exclude = [], array $include = [], bool $returnArray = true)
 	{
 		if (!empty($exclude)) {
 			$this->modelClass = $this->modelClass->makeHidden($exclude);
@@ -206,7 +208,7 @@ abstract class Service
 	{
 		$this->newQuery();
 
-		return $this->modelClass->create($values)->filtersModel($exclude, $include);		
+		return $this->modelClass->create($values)->filtersModel($exclude, $include);
 	}
 
 	/**
@@ -221,7 +223,7 @@ abstract class Service
 	{
 		$this->newQuery();
 
-		return $this->setValuesModel($values)->saveModel($exclude, $include);		
+		return $this->setValuesModel($values)->saveModel($exclude, $include);
 	}
 
 	/**
@@ -270,5 +272,4 @@ abstract class Service
 
 		return $this->modelClass->where('id', $id)->forceDelete();
 	}
-
 }
